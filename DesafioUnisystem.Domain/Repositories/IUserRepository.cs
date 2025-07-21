@@ -1,4 +1,6 @@
-﻿namespace DesafioUnisystem.Domain.Repositories;
+﻿using DesafioUnisystem.Domain.Entities;
+
+namespace DesafioUnisystem.Domain.Repositories;
 
 public interface IUserRepository
 {

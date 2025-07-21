@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace DesafioUnisystem.Domain;
+namespace DesafioUnisystem.Domain.Entities;
 
 public sealed record Password
 {
@@ -24,7 +24,7 @@ public sealed record Password
             return Result<Password>.Fail("Favor inserir uma senha.");
 
         if (password.Length < 5 || password.Length > 35)
-            return Result<Password>.Fail("A senha tem que ter no mínimo 5 e máximo 10 caracteres.");
+            return Result<Password>.Fail("A senha tem que ter no mínimo 5 e máximo 35 caracteres.");
 
         return Result<Password>.Ok(new Password(password));
     }

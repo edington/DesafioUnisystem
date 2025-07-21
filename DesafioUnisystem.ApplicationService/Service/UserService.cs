@@ -1,13 +1,13 @@
 ﻿using DesafioUnisystem.ApplicationService.Dtos;
-using DesafioUnisystem.Domain;
+using DesafioUnisystem.ApplicationService.Interface;
+using DesafioUnisystem.Domain.Entities;
 using DesafioUnisystem.Domain.Repositories;
 
 namespace DesafioUnisystem.ApplicationService.Service;
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-
 
     public UserService(IUserRepository userRepository)
     {  

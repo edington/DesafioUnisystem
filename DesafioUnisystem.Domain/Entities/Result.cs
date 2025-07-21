@@ -1,4 +1,4 @@
-﻿namespace DesafioUnisystem.Domain;
+﻿namespace DesafioUnisystem.Domain.Entities;
 
 public class Result<T>
 {
@@ -20,7 +20,7 @@ public class Result<T>
 
     public static Result<T> Fail(string errorMessage)
     {
-        return new Result<T>(false, default(T), errorMessage);
+        return new Result<T>(false, default, errorMessage);
     }
 }
 

@@ -1,10 +1,9 @@
-﻿using DesafioUnisystem.Domain;
+﻿using DesafioUnisystem.Domain.Entities;
 using DesafioUnisystem.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioUnisystem.Infrastructure;
 
-//public class UserRepository : IRepository<User>
 public class UserRepository : IUserRepository
 {
     private readonly AppDBContext _dbContext;

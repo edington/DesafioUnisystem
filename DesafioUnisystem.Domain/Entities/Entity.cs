@@ -1,4 +1,4 @@
-﻿namespace DesafioUnisystem.Domain;
+﻿namespace DesafioUnisystem.Domain.Entities;
 
 public class Entity
 {

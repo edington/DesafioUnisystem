@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DesafioUnisystem.ApplicationService.Service;
 using DesafioUnisystem.ApplicationService.Dtos;
-using DesafioUnisystem.Domain;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using DesafioUnisystem.ApplicationService.Interface;
+using DesafioUnisystem.Domain.Entities;
 
 namespace DesafioUnisystem.Presentation.WebApi.Controllers.V1
 {
@@ -13,9 +13,9 @@ namespace DesafioUnisystem.Presentation.WebApi.Controllers.V1
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
-        public UserController(ILogger<UserController> logger, UserService userService)
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;
@@ -29,7 +29,10 @@ namespace DesafioUnisystem.Presentation.WebApi.Controllers.V1
 
             if (!userResult.Success)
             {
-                return BadRequest(userResult.ErrorMessage);
+                return BadRequest(new ErrorDto()
+                {
+                    Message = userResult.ErrorMessage
+                });
             }
 
             return Ok(userResult.Value);

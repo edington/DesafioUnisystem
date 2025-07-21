@@ -1,5 +1,6 @@
-namespace DesafioUnisystem.Tests;
+namespace DesafioUnisystem.Tests.DesafioUnisystem.Domain.Tests.Dtos;
 using DesafioUnisystem.Domain;
+using global::DesafioUnisystem.Domain.Entities;
 using Xunit;
 
 public class EmailTests
@@ -29,7 +30,7 @@ public class EmailTests
 
         // Assert
         Assert.False(result.Success);
-        Assert.Equal("Email não pode ser vazio.", result.ErrorMessage);
+        Assert.Equal("E-mail não pode ser vazio.", result.ErrorMessage);
     }
 
     [Theory]
@@ -45,7 +46,7 @@ public class EmailTests
 
         // Assert
         Assert.False(result.Success);
-        Assert.Equal("Email em formato inválido.", result.ErrorMessage);
+        Assert.Equal("E-mail em formato inválido.", result.ErrorMessage);
     }
 }
 

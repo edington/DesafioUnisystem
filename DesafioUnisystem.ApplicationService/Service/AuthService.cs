@@ -2,14 +2,14 @@
 using System.Security.Claims;
 using System.Text;
 using DesafioUnisystem.ApplicationService.Dtos;
-using DesafioUnisystem.Domain;
+using DesafioUnisystem.Domain.Entities;
 using DesafioUnisystem.Domain.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DesafioUnisystem.ApplicationService.Service;
 
-public class AuthService
+public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly IConfiguration _config;
@@ -20,13 +20,14 @@ public class AuthService
         _userRepository = userRepository;
         _config = config;
     }
-    public async Task<Result<string>> GetToken(LoginDto login, CancellationToken cancellationToken)
+
+    public async Task<Result<TokenDto>> GetToken(LoginDto login, CancellationToken cancellationToken)
     {
         var usuarioResult = await GetUser(login, cancellationToken);
 
         if (!usuarioResult.Success)
         {
-            return Result<string>.Fail(usuarioResult.ErrorMessage);
+            return Result<TokenDto>.Fail(usuarioResult.ErrorMessage);
         }
 
         var jwtConfig = _config.GetSection("Jwt");
@@ -46,7 +47,12 @@ public class AuthService
             expires: DateTime.UtcNow.AddHours(double.Parse(jwtConfig["ExpireHours"]!)),
             signingCredentials: creds);
 
-        return Result<string>.Ok(new JwtSecurityTokenHandler().WriteToken(token));
+        var result = new TokenDto
+        {
+            Token = new JwtSecurityTokenHandler().WriteToken(token)
+        };
+
+        return Result<TokenDto>.Ok(result);
     }
     private async Task<Result<User>> GetUser(LoginDto login, CancellationToken cancellationToken)
     {
@@ -63,6 +69,5 @@ public class AuthService
             return Result<User>.Fail("Credenciais inválidas.");
 
         return Result<User>.Ok(user);
-    }  
+    }
 }
-

@@ -1,4 +1,4 @@
-﻿using DesafioUnisystem.Domain;
+﻿using DesafioUnisystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

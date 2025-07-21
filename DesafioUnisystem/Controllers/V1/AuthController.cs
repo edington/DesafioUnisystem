@@ -1,6 +1,4 @@
-﻿using DesafioUnisystem.Domain;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using DesafioUnisystem.Domain.Repositories;
 using DesafioUnisystem.ApplicationService.Service;
 using DesafioUnisystem.ApplicationService.Dtos;
@@ -14,9 +12,9 @@ public class AuthController : ControllerBase
 {
     private readonly IConfiguration _config;
     private readonly IUserRepository _userRepository;
-    private readonly AuthService _authService;
+    private readonly IAuthService _authService;
 
-    public AuthController(IUserRepository userRepository, IConfiguration config, AuthService authService)
+    public AuthController(IUserRepository userRepository, IConfiguration config, IAuthService authService)
     {
         _userRepository = userRepository;
         _config = config;
@@ -28,6 +26,13 @@ public class AuthController : ControllerBase
     {
         var tokenResult = await _authService.GetToken(login, cancellationToken);
 
-        return Ok(new { tokenResult.Value });
+        if (!tokenResult.Success)
+        {
+            return BadRequest(new ErrorDto() { 
+                Message = tokenResult.ErrorMessage 
+            });
+        }
+
+        return Ok(tokenResult.Value);
     }
 }
