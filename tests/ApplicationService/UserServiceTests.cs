@@ -3,7 +3,8 @@ using DesafioUnisystem.ApplicationService.Service;
 using DesafioUnisystem.Domain.Entities;
 using DesafioUnisystem.Domain.Repositories;
 using Moq;
-using Xunit;
+
+namespace DesafioUnisystem.Tests.ApplicationService;
 
 public class UserServiceTests
 {

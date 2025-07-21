@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesafioUnisystem.Domain\DesafioUnisystem.Domain.csproj" />
-    <ProjectReference Include="..\DesafioUnisystem\DesafioUnisystem.Presentation.WebApi.csproj" />
+    <ProjectReference Include="..\src\DesafioUnisystem.Domain\DesafioUnisystem.Domain.csproj" />
+    <ProjectReference Include="..\src\DesafioUnisystem.Presentation.WebApi\DesafioUnisystem.Presentation.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

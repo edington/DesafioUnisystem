@@ -1,10 +1,11 @@
-﻿using Xunit;
-using Moq;
+﻿using Moq;
 using Microsoft.Extensions.Configuration;
 using DesafioUnisystem.ApplicationService.Service;
 using DesafioUnisystem.Domain.Repositories;
 using DesafioUnisystem.ApplicationService.Dtos;
 using DesafioUnisystem.Domain.Entities;
+
+namespace DesafioUnisystem.Tests.ApplicationService;
 
 public class AuthServiceTests
 {

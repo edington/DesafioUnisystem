@@ -1,4 +1,3 @@
-using Xunit;
 using Moq;
 using Microsoft.Extensions.Logging;
 using DesafioUnisystem.Presentation.WebApi.Controllers.V1;
@@ -6,7 +5,8 @@ using DesafioUnisystem.ApplicationService.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using DesafioUnisystem.ApplicationService.Interface;
 using DesafioUnisystem.Domain.Entities;
-using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace DesafioUnisystem.Tests.WebApi;
 
 public class UserControllerTests
 {

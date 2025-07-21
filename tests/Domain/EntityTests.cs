@@ -1,6 +1,6 @@
-using Xunit;
-using System;
 using DesafioUnisystem.Domain.Entities;
+
+namespace DesafioUnisystem.Tests.Domain;
 
 public class EntityTests
 {

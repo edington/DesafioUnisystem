@@ -1,7 +1,6 @@
-namespace DesafioUnisystem.Tests.DesafioUnisystem.Domain.Tests.Dtos;
-using DesafioUnisystem.Domain;
-using global::DesafioUnisystem.Domain.Entities;
-using Xunit;
+using DesafioUnisystem.Domain.Entities;
+
+namespace DesafioUnisystem.Tests.Domain;
 
 public class EmailTests
 {
