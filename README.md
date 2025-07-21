@@ -27,7 +27,6 @@ O projeto contém testes de Integração e Unitários para garantir a confiabili
 
                            --Executar o Back-End--
 1) Pré- requisito
-    * Ter um broker RabbitMQ em execução(pode ser local ou via docker) OU
     * Ter o SQL Server instalado ou acesso a uma instância remota.
 2) Configuração do Banco de Dados
     * Crie um banco de dados com o nome DesafioUnisystem.

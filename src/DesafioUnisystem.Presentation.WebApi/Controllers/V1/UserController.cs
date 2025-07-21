@@ -5,49 +5,48 @@ using Microsoft.AspNetCore.Authorization;
 using DesafioUnisystem.ApplicationService.Interface;
 using DesafioUnisystem.Domain.Entities;
 
-namespace DesafioUnisystem.Presentation.WebApi.Controllers.V1
+namespace DesafioUnisystem.Presentation.WebApi.Controllers.V1;
+
+[ApiController]
+[Route("api/v{version:apiVersion}/users")]
+[ApiVersion("1.0")]
+public class UserController : ControllerBase
 {
-    [ApiController]
-    [Route("api/v{version:apiVersion}/users")]
-    [ApiVersion("1.0")]
-    public class UserController : ControllerBase
+    private readonly ILogger<UserController> _logger;
+    private readonly IUserService _userService;
+
+    public UserController(ILogger<UserController> logger, IUserService userService)
     {
-        private readonly ILogger<UserController> _logger;
-        private readonly IUserService _userService;
+        _logger = logger;
+        _userService = userService;
+    }
 
-        public UserController(ILogger<UserController> logger, IUserService userService)
+    [HttpPost()]
+    [ProducesResponseType<UserAddDto>((int)HttpStatusCode.OK)]
+    public async Task<IActionResult> AddUser([FromBody] UserAddDto userDto, CancellationToken cancellationToken)
+    {
+        Result<UserAddDto> userResult = await _userService.AddAsync(userDto, cancellationToken);
+
+        if (!userResult.Success)
         {
-            _logger = logger;
-            _userService = userService;
-        }
-
-        [HttpPost()]
-        [ProducesResponseType<UserAddDto>((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> AddUser([FromBody] UserAddDto userDto, CancellationToken cancellationToken)
-        {
-            Result<UserAddDto> userResult = await _userService.AddAsync(userDto, cancellationToken);
-
-            if (!userResult.Success)
+            return BadRequest(new ErrorDto()
             {
-                return BadRequest(new ErrorDto()
-                {
-                    Message = userResult.ErrorMessage
-                });
-            }
-
-            return Ok(userResult.Value);
+                Message = userResult.ErrorMessage
+            });
         }
 
-        [Authorize]
-        [HttpGet()]
-        public async Task<IActionResult> GetUsers(CancellationToken cancellationToken)
-        {
-            var users = await _userService.GetUsers(cancellationToken);
+        return Ok(userResult.Value);
+    }
 
-            if (users == null)
-                return NotFound();
+    [Authorize]
+    [HttpGet()]
+    public async Task<IActionResult> GetUsers(CancellationToken cancellationToken)
+    {
+        var users = await _userService.GetUsers(cancellationToken);
 
-            return Ok(users);
-        }
+        if (users == null)
+            return NotFound();
+
+        return Ok(users);
     }
 }
