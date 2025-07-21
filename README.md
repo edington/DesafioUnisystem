@@ -1,5 +1,5 @@
 ﻿
-Este projeto é uma API(.NET Core V8)  feita em C# e estruturada em camadas com arquitetura limpa, foi ultilizada algumas abordagens de DDD.
+Este projeto é uma API(.NET Core V8)  feita em C# e estruturada em camadas com arquitetura limpa, foram ultilizadas algumas abordagens de DDD.
 
 O projeto foi estruturado nas seguintes camadas : Presentation , Infrastructure, Application Service, Domain e Tests, assim para separar responsabilidads e facilitar a manutenção.
 
